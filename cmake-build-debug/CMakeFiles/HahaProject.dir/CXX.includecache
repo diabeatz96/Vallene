@@ -1,0 +1,36 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/Adam/CLionProjects/HahaProject/main.cpp
+raylib.h
+C:/Users/Adam/CLionProjects/HahaProject/raylib.h
+extras/raygui.h
+C:/Users/Adam/CLionProjects/HahaProject/extras/raygui.h
+
+_deps/raylib-src/src/extras/raygui.h
+raylib.h
+_deps/raylib-src/src/extras/raylib.h
+stdio.h
+-
+stdlib.h
+-
+string.h
+-
+stdarg.h
+-
+math.h
+-
+ricons.h
+_deps/raylib-src/src/extras/ricons.h
+
+_deps/raylib-src/src/raylib.h
+stdarg.h
+-
+stdbool.h
+-
+

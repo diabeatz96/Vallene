@@ -1,0 +1,3 @@
+C:\Users\Adam\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\212.5457.51\bin\cmake\win\bin\cmake.exe -E rm -f CMakeFiles\HahaProject.dir/objects.a
+C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\ar.exe cr CMakeFiles\HahaProject.dir/objects.a @CMakeFiles\HahaProject.dir\objects1.rsp
+C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE -g -Wl,--whole-archive CMakeFiles\HahaProject.dir/objects.a -Wl,--no-whole-archive -o HahaProject.exe -Wl,--out-implib,libHahaProject.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\HahaProject.dir\linklibs.rsp
