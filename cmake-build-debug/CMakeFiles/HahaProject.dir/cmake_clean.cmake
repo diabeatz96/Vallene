@@ -1,5 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/HahaProject.dir/main.cpp.obj"
+  "CMakeFiles/HahaProject.dir/playerClass/player.cpp.obj"
   "HahaProject.exe"
   "HahaProject.exe.manifest"
   "HahaProject.pdb"

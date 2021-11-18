@@ -243,6 +243,30 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\HahaProject.dir\build.make CMakeFiles/HahaProject.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+playerClass/player.obj: playerClass/player.cpp.obj
+.PHONY : playerClass/player.obj
+
+# target to build an object file
+playerClass/player.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\HahaProject.dir\build.make CMakeFiles/HahaProject.dir/playerClass/player.cpp.obj
+.PHONY : playerClass/player.cpp.obj
+
+playerClass/player.i: playerClass/player.cpp.i
+.PHONY : playerClass/player.i
+
+# target to preprocess a source file
+playerClass/player.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\HahaProject.dir\build.make CMakeFiles/HahaProject.dir/playerClass/player.cpp.i
+.PHONY : playerClass/player.cpp.i
+
+playerClass/player.s: playerClass/player.cpp.s
+.PHONY : playerClass/player.s
+
+# target to generate assembly for a file
+playerClass/player.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\HahaProject.dir\build.make CMakeFiles/HahaProject.dir/playerClass/player.cpp.s
+.PHONY : playerClass/player.cpp.s
+
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -263,6 +287,9 @@ help:
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
+	@echo ... playerClass/player.obj
+	@echo ... playerClass/player.i
+	@echo ... playerClass/player.s
 .PHONY : help
 
 

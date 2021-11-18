@@ -415,6 +415,12 @@
 		<Unit filename="C:/Users/Adam/CLionProjects/HahaProject/main.cpp">
 			<Option target="HahaProject"/>
 		</Unit>
+		<Unit filename="C:/Users/Adam/CLionProjects/HahaProject/playerClass/player.cpp">
+			<Option target="HahaProject"/>
+		</Unit>
+		<Unit filename="C:/Users/Adam/CLionProjects/HahaProject/playerClass/player.h">
+			<Option target="HahaProject"/>
+		</Unit>
 		<Unit filename="C:/Users/Adam/CLionProjects/HahaProject/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>

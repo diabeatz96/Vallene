@@ -9,6 +9,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
   "C:/Users/Adam/CLionProjects/HahaProject/main.cpp" "C:/Users/Adam/CLionProjects/HahaProject/cmake-build-debug/CMakeFiles/HahaProject.dir/main.cpp.obj"
+  "C:/Users/Adam/CLionProjects/HahaProject/playerClass/player.cpp" "C:/Users/Adam/CLionProjects/HahaProject/cmake-build-debug/CMakeFiles/HahaProject.dir/playerClass/player.cpp.obj"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

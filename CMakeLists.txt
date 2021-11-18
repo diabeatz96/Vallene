@@ -30,7 +30,7 @@ endif ()
 
 # This is the main part:
 
-add_executable(HahaProject main.cpp)
+add_executable(HahaProject main.cpp playerClass/player.cpp playerClass/player.h)
 
 target_link_libraries(HahaProject raylib)
 
