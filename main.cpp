@@ -10,6 +10,7 @@
 ********************************************************************************************/
 
 #include "raylib.h"
+#include "/playerClass/player.h"
 
 #define RAYGUI_IMPLEMENTATION
 #include "extras/raygui.h"

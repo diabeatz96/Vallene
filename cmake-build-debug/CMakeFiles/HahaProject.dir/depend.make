@@ -5,3 +5,6 @@ CMakeFiles/HahaProject.dir/main.cpp.obj: \
  ../main.cpp \
  _deps/raylib-src/src/extras/raygui.h \
  _deps/raylib-src/src/raylib.h
+CMakeFiles/HahaProject.dir/playerClass/player.cpp.obj: \
+ ../playerClass/player.cpp \
+ ../playerClass/player.h

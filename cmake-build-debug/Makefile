@@ -243,6 +243,54 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\HahaProject.dir\build.make CMakeFiles/HahaProject.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+menuClasses/menu.obj: menuClasses/menu.cpp.obj
+.PHONY : menuClasses/menu.obj
+
+# target to build an object file
+menuClasses/menu.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\HahaProject.dir\build.make CMakeFiles/HahaProject.dir/menuClasses/menu.cpp.obj
+.PHONY : menuClasses/menu.cpp.obj
+
+menuClasses/menu.i: menuClasses/menu.cpp.i
+.PHONY : menuClasses/menu.i
+
+# target to preprocess a source file
+menuClasses/menu.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\HahaProject.dir\build.make CMakeFiles/HahaProject.dir/menuClasses/menu.cpp.i
+.PHONY : menuClasses/menu.cpp.i
+
+menuClasses/menu.s: menuClasses/menu.cpp.s
+.PHONY : menuClasses/menu.s
+
+# target to generate assembly for a file
+menuClasses/menu.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\HahaProject.dir\build.make CMakeFiles/HahaProject.dir/menuClasses/menu.cpp.s
+.PHONY : menuClasses/menu.cpp.s
+
+menuClasses/textGeneration.obj: menuClasses/textGeneration.cpp.obj
+.PHONY : menuClasses/textGeneration.obj
+
+# target to build an object file
+menuClasses/textGeneration.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\HahaProject.dir\build.make CMakeFiles/HahaProject.dir/menuClasses/textGeneration.cpp.obj
+.PHONY : menuClasses/textGeneration.cpp.obj
+
+menuClasses/textGeneration.i: menuClasses/textGeneration.cpp.i
+.PHONY : menuClasses/textGeneration.i
+
+# target to preprocess a source file
+menuClasses/textGeneration.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\HahaProject.dir\build.make CMakeFiles/HahaProject.dir/menuClasses/textGeneration.cpp.i
+.PHONY : menuClasses/textGeneration.cpp.i
+
+menuClasses/textGeneration.s: menuClasses/textGeneration.cpp.s
+.PHONY : menuClasses/textGeneration.s
+
+# target to generate assembly for a file
+menuClasses/textGeneration.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\HahaProject.dir\build.make CMakeFiles/HahaProject.dir/menuClasses/textGeneration.cpp.s
+.PHONY : menuClasses/textGeneration.cpp.s
+
 playerClass/player.obj: playerClass/player.cpp.obj
 .PHONY : playerClass/player.obj
 
@@ -287,6 +335,12 @@ help:
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
+	@echo ... menuClasses/menu.obj
+	@echo ... menuClasses/menu.i
+	@echo ... menuClasses/menu.s
+	@echo ... menuClasses/textGeneration.obj
+	@echo ... menuClasses/textGeneration.i
+	@echo ... menuClasses/textGeneration.s
 	@echo ... playerClass/player.obj
 	@echo ... playerClass/player.i
 	@echo ... playerClass/player.s

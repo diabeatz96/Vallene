@@ -415,6 +415,18 @@
 		<Unit filename="C:/Users/Adam/CLionProjects/HahaProject/main.cpp">
 			<Option target="HahaProject"/>
 		</Unit>
+		<Unit filename="C:/Users/Adam/CLionProjects/HahaProject/menuClasses/menu.cpp">
+			<Option target="HahaProject"/>
+		</Unit>
+		<Unit filename="C:/Users/Adam/CLionProjects/HahaProject/menuClasses/menu.h">
+			<Option target="HahaProject"/>
+		</Unit>
+		<Unit filename="C:/Users/Adam/CLionProjects/HahaProject/menuClasses/textGeneration.cpp">
+			<Option target="HahaProject"/>
+		</Unit>
+		<Unit filename="C:/Users/Adam/CLionProjects/HahaProject/menuClasses/textGeneration.h">
+			<Option target="HahaProject"/>
+		</Unit>
 		<Unit filename="C:/Users/Adam/CLionProjects/HahaProject/playerClass/player.cpp">
 			<Option target="HahaProject"/>
 		</Unit>
