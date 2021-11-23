@@ -6,9 +6,17 @@
 
 #IncludeRegexTransform: 
 
-C:/Users/Adam/CLionProjects/HahaProject/playerClass/player.cpp
-player.h
-C:/Users/Adam/CLionProjects/HahaProject/playerClass/player.h
+C:/Users/Adam/CLionProjects/HahaProject/menuClasses/menu.cpp
+menu.h
+C:/Users/Adam/CLionProjects/HahaProject/menuClasses/menu.h
 
-C:/Users/Adam/CLionProjects/HahaProject/playerClass/player.h
+C:/Users/Adam/CLionProjects/HahaProject/menuClasses/menu.h
+raylib.h
+-
+
+_deps/raylib-src/src/raylib.h
+stdarg.h
+-
+stdbool.h
+-
 

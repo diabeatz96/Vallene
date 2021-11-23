@@ -3,8 +3,17 @@
 
 CMakeFiles/HahaProject.dir/main.cpp.obj: \
  ../main.cpp \
- _deps/raylib-src/src/extras/raygui.h \
+ ../menuClasses/menu.h \
+ ../menuClasses/textGeneration.h \
+ ../playerClass/player.h \
  _deps/raylib-src/src/raylib.h
+CMakeFiles/HahaProject.dir/menuClasses/menu.cpp.obj: \
+ ../menuClasses/menu.cpp \
+ ../menuClasses/menu.h \
+ _deps/raylib-src/src/raylib.h
+CMakeFiles/HahaProject.dir/menuClasses/textGeneration.cpp.obj: \
+ ../menuClasses/textGeneration.cpp \
+ ../menuClasses/textGeneration.h
 CMakeFiles/HahaProject.dir/playerClass/player.cpp.obj: \
  ../playerClass/player.cpp \
  ../playerClass/player.h
