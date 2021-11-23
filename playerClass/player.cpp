@@ -43,3 +43,29 @@ int player::getReputation() const {
 void player::setReputation(int reputation) {
     player::reputation = reputation;
 }
+
+void player::subtractHealth() {
+    health--;
+}
+
+/**
+ * If player chooses basic stats we can take basic constructor, if not we can make player choose.
+ */
+
+player::player() {
+    health = 5;
+    confidence = 10;
+    benevolence = 10;
+    authority = 10;
+    reputation = 10;
+}
+
+player::player(int iconfidence, int ibenevolence, int iauthority, int ireputation) {
+
+    health = 5;
+    confidence = iconfidence;
+    benevolence = ibenevolence;
+    authority = iauthority;
+    reputation = ireputation;
+
+}

@@ -39,6 +39,11 @@ public:
 
     void setReputation(int reputation);
 
+    void subtractHealth();
+
+    player();
+
+    player(int, int, int, int);
 
 private:
 
