@@ -23,6 +23,7 @@ private:
     const float screenWidth = 1200;
     const float screenHeight = 750;
     Vector2 TextBox = {screenWidth/2, screenHeight/2};
+    Music TitleMusic;
 
 };
 
