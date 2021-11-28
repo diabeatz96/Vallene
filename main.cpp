@@ -23,8 +23,6 @@ int main(void) {
     newMenu.printMenu();
 
 
-
-
     return 0;
 
 }
