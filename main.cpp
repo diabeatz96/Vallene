@@ -12,7 +12,6 @@
 #include "raylib.h"
 #include "playerClass/player.h"
 #include "menuClasses/menu.h"
-#include "menuClasses/textGeneration.h"
 
 
 int main(void) {

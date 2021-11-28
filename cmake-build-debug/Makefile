@@ -267,29 +267,29 @@ menuClasses/menu.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\HahaProject.dir\build.make CMakeFiles/HahaProject.dir/menuClasses/menu.cpp.s
 .PHONY : menuClasses/menu.cpp.s
 
-menuClasses/textGeneration.obj: menuClasses/textGeneration.cpp.obj
-.PHONY : menuClasses/textGeneration.obj
+menuClasses/textRoom.obj: menuClasses/textRoom.cpp.obj
+.PHONY : menuClasses/textRoom.obj
 
 # target to build an object file
-menuClasses/textGeneration.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\HahaProject.dir\build.make CMakeFiles/HahaProject.dir/menuClasses/textGeneration.cpp.obj
-.PHONY : menuClasses/textGeneration.cpp.obj
+menuClasses/textRoom.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\HahaProject.dir\build.make CMakeFiles/HahaProject.dir/menuClasses/textRoom.cpp.obj
+.PHONY : menuClasses/textRoom.cpp.obj
 
-menuClasses/textGeneration.i: menuClasses/textGeneration.cpp.i
-.PHONY : menuClasses/textGeneration.i
+menuClasses/textRoom.i: menuClasses/textRoom.cpp.i
+.PHONY : menuClasses/textRoom.i
 
 # target to preprocess a source file
-menuClasses/textGeneration.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\HahaProject.dir\build.make CMakeFiles/HahaProject.dir/menuClasses/textGeneration.cpp.i
-.PHONY : menuClasses/textGeneration.cpp.i
+menuClasses/textRoom.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\HahaProject.dir\build.make CMakeFiles/HahaProject.dir/menuClasses/textRoom.cpp.i
+.PHONY : menuClasses/textRoom.cpp.i
 
-menuClasses/textGeneration.s: menuClasses/textGeneration.cpp.s
-.PHONY : menuClasses/textGeneration.s
+menuClasses/textRoom.s: menuClasses/textRoom.cpp.s
+.PHONY : menuClasses/textRoom.s
 
 # target to generate assembly for a file
-menuClasses/textGeneration.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\HahaProject.dir\build.make CMakeFiles/HahaProject.dir/menuClasses/textGeneration.cpp.s
-.PHONY : menuClasses/textGeneration.cpp.s
+menuClasses/textRoom.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\HahaProject.dir\build.make CMakeFiles/HahaProject.dir/menuClasses/textRoom.cpp.s
+.PHONY : menuClasses/textRoom.cpp.s
 
 playerClass/player.obj: playerClass/player.cpp.obj
 .PHONY : playerClass/player.obj
@@ -338,9 +338,9 @@ help:
 	@echo ... menuClasses/menu.obj
 	@echo ... menuClasses/menu.i
 	@echo ... menuClasses/menu.s
-	@echo ... menuClasses/textGeneration.obj
-	@echo ... menuClasses/textGeneration.i
-	@echo ... menuClasses/textGeneration.s
+	@echo ... menuClasses/textRoom.obj
+	@echo ... menuClasses/textRoom.i
+	@echo ... menuClasses/textRoom.s
 	@echo ... playerClass/player.obj
 	@echo ... playerClass/player.i
 	@echo ... playerClass/player.s

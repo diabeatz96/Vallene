@@ -421,10 +421,10 @@
 		<Unit filename="C:/Users/Adam/CLionProjects/HahaProject/menuClasses/menu.h">
 			<Option target="HahaProject"/>
 		</Unit>
-		<Unit filename="C:/Users/Adam/CLionProjects/HahaProject/menuClasses/textGeneration.cpp">
+		<Unit filename="C:/Users/Adam/CLionProjects/HahaProject/menuClasses/textRoom.cpp">
 			<Option target="HahaProject"/>
 		</Unit>
-		<Unit filename="C:/Users/Adam/CLionProjects/HahaProject/menuClasses/textGeneration.h">
+		<Unit filename="C:/Users/Adam/CLionProjects/HahaProject/menuClasses/textRoom.h">
 			<Option target="HahaProject"/>
 		</Unit>
 		<Unit filename="C:/Users/Adam/CLionProjects/HahaProject/playerClass/player.cpp">

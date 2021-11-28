@@ -93,24 +93,10 @@ CMakeFiles/HahaProject.dir/playerClass/player.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/HahaProject.dir/playerClass/player.cpp.s"
 	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Adam\CLionProjects\HahaProject\playerClass\player.cpp -o CMakeFiles\HahaProject.dir\playerClass\player.cpp.s
 
-CMakeFiles/HahaProject.dir/menuClasses/textGeneration.cpp.obj: CMakeFiles/HahaProject.dir/flags.make
-CMakeFiles/HahaProject.dir/menuClasses/textGeneration.cpp.obj: CMakeFiles/HahaProject.dir/includes_CXX.rsp
-CMakeFiles/HahaProject.dir/menuClasses/textGeneration.cpp.obj: ../menuClasses/textGeneration.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Adam\CLionProjects\HahaProject\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/HahaProject.dir/menuClasses/textGeneration.cpp.obj"
-	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\HahaProject.dir\menuClasses\textGeneration.cpp.obj -c C:\Users\Adam\CLionProjects\HahaProject\menuClasses\textGeneration.cpp
-
-CMakeFiles/HahaProject.dir/menuClasses/textGeneration.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/HahaProject.dir/menuClasses/textGeneration.cpp.i"
-	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Adam\CLionProjects\HahaProject\menuClasses\textGeneration.cpp > CMakeFiles\HahaProject.dir\menuClasses\textGeneration.cpp.i
-
-CMakeFiles/HahaProject.dir/menuClasses/textGeneration.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/HahaProject.dir/menuClasses/textGeneration.cpp.s"
-	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Adam\CLionProjects\HahaProject\menuClasses\textGeneration.cpp -o CMakeFiles\HahaProject.dir\menuClasses\textGeneration.cpp.s
-
 CMakeFiles/HahaProject.dir/menuClasses/menu.cpp.obj: CMakeFiles/HahaProject.dir/flags.make
 CMakeFiles/HahaProject.dir/menuClasses/menu.cpp.obj: CMakeFiles/HahaProject.dir/includes_CXX.rsp
 CMakeFiles/HahaProject.dir/menuClasses/menu.cpp.obj: ../menuClasses/menu.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Adam\CLionProjects\HahaProject\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/HahaProject.dir/menuClasses/menu.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Adam\CLionProjects\HahaProject\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/HahaProject.dir/menuClasses/menu.cpp.obj"
 	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\HahaProject.dir\menuClasses\menu.cpp.obj -c C:\Users\Adam\CLionProjects\HahaProject\menuClasses\menu.cpp
 
 CMakeFiles/HahaProject.dir/menuClasses/menu.cpp.i: cmake_force
@@ -121,20 +107,34 @@ CMakeFiles/HahaProject.dir/menuClasses/menu.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/HahaProject.dir/menuClasses/menu.cpp.s"
 	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Adam\CLionProjects\HahaProject\menuClasses\menu.cpp -o CMakeFiles\HahaProject.dir\menuClasses\menu.cpp.s
 
+CMakeFiles/HahaProject.dir/menuClasses/textRoom.cpp.obj: CMakeFiles/HahaProject.dir/flags.make
+CMakeFiles/HahaProject.dir/menuClasses/textRoom.cpp.obj: CMakeFiles/HahaProject.dir/includes_CXX.rsp
+CMakeFiles/HahaProject.dir/menuClasses/textRoom.cpp.obj: ../menuClasses/textRoom.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Adam\CLionProjects\HahaProject\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/HahaProject.dir/menuClasses/textRoom.cpp.obj"
+	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\HahaProject.dir\menuClasses\textRoom.cpp.obj -c C:\Users\Adam\CLionProjects\HahaProject\menuClasses\textRoom.cpp
+
+CMakeFiles/HahaProject.dir/menuClasses/textRoom.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/HahaProject.dir/menuClasses/textRoom.cpp.i"
+	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Adam\CLionProjects\HahaProject\menuClasses\textRoom.cpp > CMakeFiles\HahaProject.dir\menuClasses\textRoom.cpp.i
+
+CMakeFiles/HahaProject.dir/menuClasses/textRoom.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/HahaProject.dir/menuClasses/textRoom.cpp.s"
+	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Adam\CLionProjects\HahaProject\menuClasses\textRoom.cpp -o CMakeFiles\HahaProject.dir\menuClasses\textRoom.cpp.s
+
 # Object files for target HahaProject
 HahaProject_OBJECTS = \
 "CMakeFiles/HahaProject.dir/main.cpp.obj" \
 "CMakeFiles/HahaProject.dir/playerClass/player.cpp.obj" \
-"CMakeFiles/HahaProject.dir/menuClasses/textGeneration.cpp.obj" \
-"CMakeFiles/HahaProject.dir/menuClasses/menu.cpp.obj"
+"CMakeFiles/HahaProject.dir/menuClasses/menu.cpp.obj" \
+"CMakeFiles/HahaProject.dir/menuClasses/textRoom.cpp.obj"
 
 # External object files for target HahaProject
 HahaProject_EXTERNAL_OBJECTS =
 
 HahaProject.exe: CMakeFiles/HahaProject.dir/main.cpp.obj
 HahaProject.exe: CMakeFiles/HahaProject.dir/playerClass/player.cpp.obj
-HahaProject.exe: CMakeFiles/HahaProject.dir/menuClasses/textGeneration.cpp.obj
 HahaProject.exe: CMakeFiles/HahaProject.dir/menuClasses/menu.cpp.obj
+HahaProject.exe: CMakeFiles/HahaProject.dir/menuClasses/textRoom.cpp.obj
 HahaProject.exe: CMakeFiles/HahaProject.dir/build.make
 HahaProject.exe: _deps/raylib-build/raylib/libraylib.a
 HahaProject.exe: _deps/raylib-build/raylib/external/glfw/src/libglfw3.a
