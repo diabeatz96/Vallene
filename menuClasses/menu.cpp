@@ -3,6 +3,7 @@
 //
 
 #include "menu.h"
+#include <iostream>
 
 #define RAYGUI_IMPLEMENTATION
 #include "extras/raygui.h"
@@ -11,7 +12,7 @@ void menu::initMenu() {
 
     InitWindow(screenWidth, screenHeight, "Vallene");
     /** Loading Absolute Path for Now until I can fix regular path.*/
-    GuiLoadStyle("C:\\Users\\Adam\\CLionProjects\\HahaProject\\cmake-build-debug\\CMakeFiles\\HahaProject.dir\\styles\\candy\\candy.rgs");
+    GuiLoadStyle("C:\\Users\\Adam\\CLionProjects\\HahaProject\\cmake-build-debug\\CMakeFiles\\HahaProject.dir\\styles\\cyber\\cyber.rgs");
     SetConfigFlags(FLAG_MSAA_4X_HINT);
 }
 void menu::printMenu() {
@@ -25,10 +26,13 @@ void menu::printMenu() {
     SetTargetFPS(60);
 
 
+
     /**  Size to center Logo. + values go right and down, - values go left and up*/
     Vector2 backgroundLen = {static_cast<float>(GetScreenWidth()/2 - Background.width/2) - 350, static_cast<float>(GetScreenHeight()/2  - Background.height/2) - 340};
     Vector2 logoLen = {static_cast<float>(GetScreenWidth()/2 - Logo.width/2) + 160, static_cast<float>(GetScreenHeight()/2  - Logo.height/2) + 150};
-    Rectangle Box = {100, 200};
+    Rectangle topButton = {static_cast<float>(GetScreenWidth()/2) - 50, static_cast<float>(GetScreenHeight()/2) - 100, 100, 50};
+    Rectangle middleButton = {static_cast<float>(GetScreenWidth()/2) - 50, static_cast<float>(GetScreenHeight()/2), 100, 50};
+    Rectangle bottomButton = {static_cast<float>(GetScreenWidth()/2) - 50, static_cast<float>(GetScreenHeight()/2) + 100, 100, 50};
 
     InitAudioDevice();
     TitleMusic = LoadMusicStream("Audio/Title.mp3");
@@ -60,16 +64,11 @@ void menu::printMenu() {
             alpha += 0.02f;
             if (alpha >= 1.0f) {
                 frameCounter = 0;
-                alpha = 1.0f;
+                alpha = 0.f;
                 state = 3;
             }
         }
 
-        if (IsKeyPressed(KEY_SPACE))
-        {
-            StopMusicStream(TitleMusic);
-            PlayMusicStream(TitleMusic);
-        }
 
         /**  Testing time for when key is pressed.*/
         if(IsKeyPressed(KEY_A)) {
@@ -81,27 +80,37 @@ void menu::printMenu() {
 
         ClearBackground(RAYWHITE);
 
-        if(state == 0) {
+        if  (state == 0) {
             DrawRectangle(0, 0, GetScreenWidth(), GetScreenHeight(), BLACK);
         }
         else if (state == 1) {
             DrawRectangle(0, 0, GetScreenWidth(), GetScreenHeight(), Fade(BLACK, alpha));
         }
         else if (state == 2) {
-            DrawTextureEx(Background, backgroundLen, 0, 0, Fade(RAYWHITE, alpha));
+            DrawTextureEx(Background, backgroundLen, 0, 2, Fade(RAYWHITE, alpha));
             DrawTextureEx(Logo, logoLen, 0, 0.2, Fade(RAYWHITE, alpha));
 
         } else if (state == 3 ) {
             DrawTextureEx(Background, backgroundLen, 0, 2, WHITE);
             DrawTextureEx(Logo, logoLen, 0, 0.2, WHITE);
-            DrawText("Click Here", GetScreenWidth()/2 - 150, GetScreenHeight()/2 + 250, 40, WHITE);
-            if(GuiButton(Rectangle{100, 100, 100 , 100}, "Hello!")) {
+
+            if(GuiButton(middleButton, "Load Game")) {
                 state = 4;
             }
-        } else if(state == 4) {
-            ClearBackground(WHITE);
-            if(GuiTextBox(Rectangle{100, 100, 100 , 100}, "Sauce", 18, false)) {
-                state = 3;
+
+            if(GuiButton(topButton, "Start Game")) {
+                state = 4;
+            }
+
+            if(GuiButton(bottomButton, "Exit")) {
+                state = 4;
+            }
+
+        }
+
+        else if(state == 4) {
+            if(IsKeyPressed(KEY_B)) {
+                DrawFPS(100, 100);
             }
         }
 
