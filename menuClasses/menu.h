@@ -24,7 +24,8 @@ private:
     const float screenHeight = 750;
     Vector2 TextBox = {screenWidth/2, screenHeight/2};
     Music TitleMusic;
-
+    /** Windows for BeginFade */
+    enum windows {BEGINFADE, ENDFADE, FADEINMENU, MAINMENU};
 };
 
 

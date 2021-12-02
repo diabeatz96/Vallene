@@ -6,6 +6,10 @@
 #define VALLENE_PLAYER_H
 
 
+#include <memory>
+#include "../menuClasses/textRoom.h"
+
+
 class player {
 public:
 
@@ -44,6 +48,8 @@ public:
     player();
 
     player(int, int, int, int);
+
+    std::shared_ptr<textRoom> currentRoom;
 
 
 

@@ -34,6 +34,9 @@ void menu::printMenu() {
     Rectangle middleButton = {static_cast<float>(GetScreenWidth()/2) - 50, static_cast<float>(GetScreenHeight()/2), 100, 50};
     Rectangle bottomButton = {static_cast<float>(GetScreenWidth()/2) - 50, static_cast<float>(GetScreenHeight()/2) + 100, 100, 50};
 
+    windows windowStates;
+    windowStates = BEGINFADE;
+
     InitAudioDevice();
     TitleMusic = LoadMusicStream("Audio/Title.mp3");
     PlayMusicStream(TitleMusic);
@@ -43,29 +46,29 @@ void menu::printMenu() {
 
         UpdateMusicStream(TitleMusic);
 
-        if(state == 0) {
+        if(windowStates == BEGINFADE) {
             frameCounter++;
             if(frameCounter == 120) {
-                state = 1;
+                windowStates = ENDFADE;
                 frameCounter = 0;
             }
         }
-        else if (state == 1) {
+        else if (windowStates == ENDFADE) {
             frameCounter++;
             alpha -= 0.02f;
             if (alpha <= 0.0f) {
                 frameCounter = 0;
                 alpha = 0.0f;
-                state = 2;
+                windowStates = FADEINMENU;
             }
         }
-        else if (state == 2) {
+        else if (windowStates == FADEINMENU) {
             frameCounter++;
             alpha += 0.02f;
             if (alpha >= 1.0f) {
                 frameCounter = 0;
                 alpha = 0.f;
-                state = 3;
+                windowStates = MAINMENU;
             }
         }
 
@@ -80,22 +83,22 @@ void menu::printMenu() {
 
         ClearBackground(RAYWHITE);
 
-        if  (state == 0) {
+        if  (windowStates == BEGINFADE) {
             DrawRectangle(0, 0, GetScreenWidth(), GetScreenHeight(), BLACK);
         }
-        else if (state == 1) {
+        else if (windowStates == ENDFADE) {
             DrawRectangle(0, 0, GetScreenWidth(), GetScreenHeight(), Fade(BLACK, alpha));
         }
-        else if (state == 2) {
+        else if (windowStates == FADEINMENU) {
             DrawTextureEx(Background, backgroundLen, 0, 2, Fade(RAYWHITE, alpha));
-            DrawTextureEx(Logo, logoLen, 0, 0.2, Fade(RAYWHITE, alpha));
+            //DrawTextureEx(Logo, logoLen, 0, 0.2, Fade(RAYWHITE, alpha));
 
-        } else if (state == 3 ) {
+        } else if (windowStates == MAINMENU) {
             DrawTextureEx(Background, backgroundLen, 0, 2, WHITE);
-            DrawTextureEx(Logo, logoLen, 0, 0.2, WHITE);
+            //DrawTextureEx(Logo, logoLen, 0, 0.2, WHITE);
 
             if(GuiButton(middleButton, "Load Game")) {
-                state = 4;
+                //LoadFileText();
             }
 
             if(GuiButton(topButton, "Start Game")) {
@@ -103,7 +106,9 @@ void menu::printMenu() {
             }
 
             if(GuiButton(bottomButton, "Exit")) {
-                state = 4;
+                UnloadTexture(Background);       // Texture unloading
+                UnloadTexture(Logo);       // Texture unloading
+                CloseWindow();
             }
 
         }
