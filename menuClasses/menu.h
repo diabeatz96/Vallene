@@ -12,11 +12,12 @@
 class menu {
 
 public:
+    enum windows {BEGINFADE, ENDFADE, FADEINMENU, MAINMENU, BEGINTEXTFADE, TEXTBLOCK, ENDTEXT};
 
     void initMenu();
     void printMenu();
     void LoadTextures(int state);
-
+    void stateManager(windows& State, int& framesref, float& alpha);
 
 private:
     int state = 0;
@@ -25,7 +26,6 @@ private:
     Vector2 TextBox = {screenWidth/2, screenHeight/2};
     Music TitleMusic;
     /** Windows for BeginFade */
-    enum windows {BEGINFADE, ENDFADE, FADEINMENU, MAINMENU};
 };
 
 

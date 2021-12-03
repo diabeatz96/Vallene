@@ -28,11 +28,16 @@ void menu::printMenu() {
 
 
     /**  Size to center Logo. + values go right and down, - values go left and up*/
-    Vector2 backgroundLen = {static_cast<float>(GetScreenWidth()/2 - Background.width/2) - 350, static_cast<float>(GetScreenHeight()/2  - Background.height/2) - 340};
-    Vector2 logoLen = {static_cast<float>(GetScreenWidth()/2 - Logo.width/2) + 160, static_cast<float>(GetScreenHeight()/2  - Logo.height/2) + 150};
-    Rectangle topButton = {static_cast<float>(GetScreenWidth()/2) - 50, static_cast<float>(GetScreenHeight()/2) - 100, 100, 50};
-    Rectangle middleButton = {static_cast<float>(GetScreenWidth()/2) - 50, static_cast<float>(GetScreenHeight()/2), 100, 50};
-    Rectangle bottomButton = {static_cast<float>(GetScreenWidth()/2) - 50, static_cast<float>(GetScreenHeight()/2) + 100, 100, 50};
+    Vector2 backgroundLen = {static_cast<float>(GetScreenWidth() / 2 - Background.width / 2) - 350,
+                             static_cast<float>(GetScreenHeight() / 2 - Background.height / 2) - 340};
+    Vector2 logoLen = {static_cast<float>(GetScreenWidth() / 2 - Logo.width / 2) + 160,
+                       static_cast<float>(GetScreenHeight() / 2 - Logo.height / 2) + 150};
+    Rectangle topButton = {static_cast<float>(GetScreenWidth() / 2) - 50,
+                           static_cast<float>(GetScreenHeight() / 2) - 100, 100, 50};
+    Rectangle middleButton = {static_cast<float>(GetScreenWidth() / 2) - 50, static_cast<float>(GetScreenHeight() / 2),
+                              100, 50};
+    Rectangle bottomButton = {static_cast<float>(GetScreenWidth() / 2) - 50,
+                              static_cast<float>(GetScreenHeight() / 2) + 100, 100, 50};
 
     windows windowStates;
     windowStates = BEGINFADE;
@@ -42,54 +47,34 @@ void menu::printMenu() {
     PlayMusicStream(TitleMusic);
 
 
-    while(!WindowShouldClose()) {
+    while (!WindowShouldClose()) {
 
         UpdateMusicStream(TitleMusic);
 
-        if(windowStates == BEGINFADE) {
-            frameCounter++;
-            if(frameCounter == 120) {
-                windowStates = ENDFADE;
-                frameCounter = 0;
-            }
-        }
-        else if (windowStates == ENDFADE) {
-            frameCounter++;
-            alpha -= 0.02f;
-            if (alpha <= 0.0f) {
-                frameCounter = 0;
-                alpha = 0.0f;
-                windowStates = FADEINMENU;
-            }
-        }
-        else if (windowStates == FADEINMENU) {
-            frameCounter++;
-            alpha += 0.02f;
-            if (alpha >= 1.0f) {
-                frameCounter = 0;
-                alpha = 0.f;
-                windowStates = MAINMENU;
-            }
-        }
+        stateManager(windowStates, frameCounter, alpha);
 
 
         /**  Testing time for when key is pressed.*/
-        if(IsKeyPressed(KEY_A)) {
+        if (IsKeyPressed(KEY_A)) {
             Logo.width += 10;
         }
 
         /** All Drawing Functions Begin Here */
         BeginDrawing();
 
-        ClearBackground(RAYWHITE);
+        if(windowStates < 3) {
+            ClearBackground(RAYWHITE);
+        }
+        else {
+            ClearBackground(BLACK);
+        }
 
-        if  (windowStates == BEGINFADE) {
+
+        if (windowStates == BEGINFADE) {
             DrawRectangle(0, 0, GetScreenWidth(), GetScreenHeight(), BLACK);
-        }
-        else if (windowStates == ENDFADE) {
+        } else if (windowStates == ENDFADE) {
             DrawRectangle(0, 0, GetScreenWidth(), GetScreenHeight(), Fade(BLACK, alpha));
-        }
-        else if (windowStates == FADEINMENU) {
+        } else if (windowStates == FADEINMENU) {
             DrawTextureEx(Background, backgroundLen, 0, 2, Fade(RAYWHITE, alpha));
             //DrawTextureEx(Logo, logoLen, 0, 0.2, Fade(RAYWHITE, alpha));
 
@@ -97,38 +82,85 @@ void menu::printMenu() {
             DrawTextureEx(Background, backgroundLen, 0, 2, WHITE);
             //DrawTextureEx(Logo, logoLen, 0, 0.2, WHITE);
 
-            if(GuiButton(middleButton, "Load Game")) {
+            if (GuiButton(middleButton, "Load Game")) {
                 //LoadFileText();
             }
 
-            if(GuiButton(topButton, "Start Game")) {
-                state = 4;
+            if (GuiButton(topButton, "Start Game")) {
+                windowStates = BEGINTEXTFADE;
             }
 
-            if(GuiButton(bottomButton, "Exit")) {
+            if (GuiButton(bottomButton, "Exit")) {
                 UnloadTexture(Background);       // Texture unloading
                 UnloadTexture(Logo);       // Texture unloading
                 CloseWindow();
             }
-
-        }
-
-        else if(state == 4) {
-            if(IsKeyPressed(KEY_B)) {
-                DrawFPS(100, 100);
-            }
+        } else if (windowStates == BEGINTEXTFADE) {
+            DrawRectangle(0, 0, GetScreenWidth(), GetScreenHeight(), Fade(BLACK, alpha));
+        } else if (windowStates == TEXTBLOCK) {
+            DrawTextureEx(Background, backgroundLen, 0, 2, Fade(BLACK, alpha));
+        } else if (windowStates == ENDTEXT) {
+            DrawRectangle(0, 0, GetScreenWidth(), GetScreenHeight(), BLACK);
+            DrawText("Eat me Bozo", 200, 200, 20, WHITE);
         }
 
         EndDrawing();
-
     }
 
-    UnloadTexture(Background);       // Texture unloading
-    UnloadTexture(Logo);       // Texture unloading
+        UnloadTexture(Background);       // Texture unloading
+        UnloadTexture(Logo);       // Texture unloading
 
-    CloseWindow();                // Close window and OpenGL context
+        CloseWindow();                // Close window and OpenGL context
+
 }
+
+
 
 void menu::LoadTextures(int state) {
 
+}
+
+void menu::stateManager(menu::windows& windowStates, int& frameCounter, float& alpha) {
+
+    if (windowStates == BEGINFADE) {
+        frameCounter++;
+        if (frameCounter == 120) {
+            windowStates = ENDFADE;
+            frameCounter = 0;
+        }
+    } else if (windowStates == ENDFADE) {
+        frameCounter++;
+        alpha -= 0.02f;
+        if (alpha <= 0.0f) {
+            frameCounter = 0;
+            alpha = 0.0f;
+            windowStates = FADEINMENU;
+        }
+    } else if (windowStates == FADEINMENU) {
+        frameCounter++;
+        alpha += 0.02f;
+        if (alpha >= 1.0f) {
+            frameCounter = 0;
+            alpha = 0.f;
+            windowStates = MAINMENU;
+        }
+    } else if (windowStates == BEGINTEXTFADE) {
+        frameCounter++;
+        alpha += 0.01f;
+        if (alpha >= 1.0f) {
+            frameCounter = 0;
+            alpha = 0.0f;
+            windowStates = TEXTBLOCK;
+        }
+    } else if (windowStates == TEXTBLOCK) {
+        frameCounter++;
+        alpha -= 0.01f;
+        if (alpha <= 0.0f) {
+            frameCounter = 0;
+            alpha = 0.0f;
+            windowStates = ENDTEXT;
+        }
+    } else if (windowStates == ENDTEXT) {
+
+    }
 }
