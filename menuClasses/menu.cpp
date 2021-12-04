@@ -101,7 +101,7 @@ void menu::printMenu() {
             DrawTextureEx(Background, backgroundLen, 0, 2, Fade(BLACK, alpha));
         } else if (windowStates == ENDTEXT) {
             DrawRectangle(0, 0, GetScreenWidth(), GetScreenHeight(), BLACK);
-            DrawText("Eat me Bozo", 200, 200, 20, WHITE);
+            selectTextRoom();
         }
 
         EndDrawing();
@@ -163,4 +163,13 @@ void menu::stateManager(menu::windows& windowStates, int& frameCounter, float& a
     } else if (windowStates == ENDTEXT) {
 
     }
+}
+
+void menu::selectTextRoom() {
+    textRoom TEST_BOX1;
+
+    TEST_BOX1.setMyText1("It is the year 3360 on the planet of Vallene. \n This small planet in ancient times used to be a barren wasteland with people fighting in endless sand dunes, \n until “Dawn” appeared. Dawn, a flying castle which appeared 5,000 years ago, shifted the weather, and created seasons. \n Since then, Dawn has been controlled by a Royal family since the beginning, led by the chosen sovereign, who is given the title of “Maestro”, and the “Four Heroes of the Seasons”. \n Our story begins when the most recent sovereign has died. An Empress loved by her people, as well as her eldest son Isaiah. ");
+    TEST_BOX1.setRoomName("First Title");
+
+    GuiTextBox(Rectangle{GUI_TEXT_ALIGN_CENTER, GUI_TEXT_ALIGN_CENTER, static_cast<float>(GetScreenWidth() * 0.7), static_cast<float>(GetScreenHeight() * 0.7)}, TEST_BOX1.getMyText(), 50, true);
 }

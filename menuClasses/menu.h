@@ -6,7 +6,7 @@
 #define VALLENE_MENU_H
 
 #include<raylib.h>
-
+#include"textRoom.h"
 
 
 class menu {
@@ -18,6 +18,7 @@ public:
     void printMenu();
     void LoadTextures(int state);
     void stateManager(windows& State, int& framesref, float& alpha);
+    void selectTextRoom();
 
 private:
     int state = 0;

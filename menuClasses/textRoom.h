@@ -11,6 +11,18 @@
 #include <memory>
 
 class textRoom {
+public:
+    const std::list<std::shared_ptr<textRoom>> &getConnectedRooms() const;
+
+    void setConnectedRooms(const std::list<std::shared_ptr<textRoom>> &connectedRooms);
+
+    const std::string &getRoomName() const;
+
+    void setRoomName(const std::string &roomName);
+
+    char *getMyText() const;
+
+    void setMyText1(char *myText);
 
 public:
 
@@ -19,8 +31,7 @@ public:
 private:
 
     std::string roomName;
-    std::string myText;
+    char* myText;
 };
-
 
 #endif //VALLENE_TEXTROOM_H
