@@ -4,12 +4,14 @@
 *
 *   CONFIGURATION:
 *
+*   #define SUPPORT_MODULE_RMODELS
+*       rmodels module is included in the build
+*
 *   #define SUPPORT_FILEFORMAT_OBJ
 *   #define SUPPORT_FILEFORMAT_MTL
 *   #define SUPPORT_FILEFORMAT_IQM
 *   #define SUPPORT_FILEFORMAT_GLTF
 *   #define SUPPORT_FILEFORMAT_VOX
-*
 *       Selected desired fileformats to be supported for model data loading.
 *
 *   #define SUPPORT_MESH_GENERATION
@@ -44,6 +46,8 @@
 #if !defined(EXTERNAL_CONFIG_FLAGS)
     #include "config.h"     // Defines module configuration flags
 #endif
+
+#if defined(SUPPORT_MODULE_RMODELS)
 
 #include "utils.h"          // Required for: TRACELOG(), LoadFileData(), LoadFileText(), SaveFileText()
 #include "rlgl.h"           // OpenGL abstraction layer to OpenGL 1.1, 2.1, 3.3+ or ES2
@@ -918,7 +922,7 @@ Model LoadModel(const char *fileName)
     if (IsFileExtension(fileName, ".iqm")) model = LoadIQM(fileName);
 #endif
 #if defined(SUPPORT_FILEFORMAT_GLTF)
-    if (IsFileExtension(fileName, ".gltf;.glb")) model = LoadGLTF(fileName);
+    if (IsFileExtension(fileName, ".gltf") || IsFileExtension(fileName, ".glb")) model = LoadGLTF(fileName);
 #endif
 #if defined(SUPPORT_FILEFORMAT_VOX)
     if (IsFileExtension(fileName, ".vox")) model = LoadVOX(fileName);
@@ -1703,7 +1707,6 @@ bool ExportMesh(Mesh mesh, const char *fileName)
 
     return success;
 }
-
 
 // Load materials from model file
 Material *LoadMaterials(const char *fileName, int *materialCount)
@@ -4923,6 +4926,56 @@ static Model LoadGLTF(const char *fileName)
             }
         }
 
+/*
+
+        // REF: https://www.khronos.org/registry/glTF/specs/2.0/glTF-2.0.html#skins
+        // REF: https://www.khronos.org/registry/glTF/specs/2.0/glTF-2.0.html#skinned-mesh-attributes
+        //----------------------------------------------------------------------------------------------------
+        for (unsigned int i = 0, meshIndex = 0; i < data->meshes_count; i++)
+        {
+            for (unsigned int p = 0; p < data->meshes[i].primitives_count; p++)
+            {
+                // NOTE: We only support primitives defined by triangles
+                if (data->meshes[i].primitives[p].type != cgltf_primitive_type_triangles) continue;
+
+                for (unsigned int j = 0; j < data->meshes[i].primitives[p].attributes_count; j++)
+                {
+                    // NOTE: JOINTS_1 + WEIGHT_1 will be used for +4 joints influencing a vertex -> Not supported by raylib
+
+                    if (data->meshes[i].primitives[p].attributes[j].type == cgltf_attribute_type_joints)        // JOINTS_n (vec4: 4 bones max per vertex / u8, u16)
+                    {
+                        cgltf_accessor *attribute = data->meshes[i].primitives[p].attributes[j].data;
+
+                        if ((attribute->component_type == cgltf_component_type_r_8u) && (attribute->type == cgltf_type_vec4))
+                        {
+                            // Init raylib mesh bone ids to copy glTF attribute data
+                            model.meshes[meshIndex].boneIds = RL_CALLOC(model.meshes[meshIndex].vertexCount*4, sizeof(unsigned char));
+
+                            // Load 4 components of unsigned char data type into mesh.boneIds
+                            LOAD_ATTRIBUTE(attribute, 4, unsigned char, model.meshes[meshIndex].boneIds)
+                        }
+                        else TRACELOG(LOG_WARNING, "MODEL: [%s] Joint attribute data format not supported, use vec4 u8", fileName);
+                    }
+                    else if (data->meshes[i].primitives[p].attributes[j].type == cgltf_attribute_type_weights)  // WEIGHTS_n (vec4 / u8, u16, f32)
+                    {
+                        cgltf_accessor *attribute = data->meshes[i].primitives[p].attributes[j].data;
+
+                        if ((attribute->component_type == cgltf_component_type_r_32f) && (attribute->type == cgltf_type_vec4))
+                        {
+                            // Init raylib mesh bone weight to copy glTF attribute data
+                            model.meshes[meshIndex].boneWeights = RL_CALLOC(model.meshes[meshIndex].vertexCount*4, sizeof(float));
+
+                            // Load 4 components of float data type into mesh.boneWeights
+                            LOAD_ATTRIBUTE(attribute, 4, float, model.meshes[meshIndex].boneWeights)
+                        }
+                        else TRACELOG(LOG_WARNING, "MODEL: [%s] Joint weight attribute data format not supported, use vec4 float", fileName);
+                    }
+                }
+
+                meshIndex++;       // Move to next mesh
+            }
+        }
+*/
         // Free all cgltf loaded data
         cgltf_free(data);
     }
@@ -5039,3 +5092,5 @@ static Model LoadVOX(const char *fileName)
     return model;
 }
 #endif
+
+#endif      // SUPPORT_MODULE_RMODELS

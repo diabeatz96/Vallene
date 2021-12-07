@@ -400,6 +400,14 @@ math.h
 errno.h
 -
 
+C:/Users/Adam/CLionProjects/HahaProject/cmake-build-debug/_deps/raylib-src/src/external/qoi.h
+qoi.h
+C:/Users/Adam/CLionProjects/HahaProject/cmake-build-debug/_deps/raylib-src/src/external/qoi.h
+stdlib.h
+-
+stdio.h
+-
+
 C:/Users/Adam/CLionProjects/HahaProject/cmake-build-debug/_deps/raylib-src/src/external/sdefl.h
 assert.h
 -
@@ -841,6 +849,8 @@ stdio.h
 -
 external/stb_image.h
 C:/Users/Adam/CLionProjects/HahaProject/cmake-build-debug/_deps/raylib-src/src/external/stb_image.h
+external/qoi.h
+C:/Users/Adam/CLionProjects/HahaProject/cmake-build-debug/_deps/raylib-src/src/external/qoi.h
 external/stb_image_write.h
 C:/Users/Adam/CLionProjects/HahaProject/cmake-build-debug/_deps/raylib-src/src/external/stb_image_write.h
 external/stb_image_resize.h

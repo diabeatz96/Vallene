@@ -12,9 +12,9 @@
 
 class textRoom {
 public:
-    const std::list<std::shared_ptr<textRoom>> &getConnectedRooms() const;
+    const std::list<textRoom> & getConnectedRooms() const;
 
-    void setConnectedRooms(const std::list<std::shared_ptr<textRoom>> &connectedRooms);
+    void setConnectedRooms(const std::list<textRoom> &connectedRooms);
 
     const std::string &getRoomName() const;
 
@@ -26,7 +26,7 @@ public:
 
 public:
 
-    std::list<std::shared_ptr<textRoom>> ConnectedRooms;
+    std::list<textRoom> ConnectedRooms;
 
 private:
 

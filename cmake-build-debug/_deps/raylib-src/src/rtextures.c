@@ -4,11 +4,15 @@
 *
 *   CONFIGURATION:
 *
+*   #define SUPPORT_MODULE_RTEXTURES
+*       rtextures module is included in the build
+*
 *   #define SUPPORT_FILEFORMAT_BMP
 *   #define SUPPORT_FILEFORMAT_PNG
 *   #define SUPPORT_FILEFORMAT_TGA
 *   #define SUPPORT_FILEFORMAT_JPG
 *   #define SUPPORT_FILEFORMAT_GIF
+*   #define SUPPORT_FILEFORMAT_QOI
 *   #define SUPPORT_FILEFORMAT_PSD
 *   #define SUPPORT_FILEFORMAT_PIC
 *   #define SUPPORT_FILEFORMAT_HDR
@@ -64,11 +68,13 @@
     #include "config.h"         // Defines module configuration flags
 #endif
 
+#if defined(SUPPORT_MODULE_RTEXTURES)
+
 #include "utils.h"              // Required for: TRACELOG() and fopen() Android mapping
 #include "rlgl.h"               // OpenGL abstraction layer to OpenGL 1.1, 3.3 or ES2
 
 #include <stdlib.h>             // Required for: malloc(), free()
-#include <string.h>             // Required for: strlen() [Used in ImageTextEx()]
+#include <string.h>             // Required for: strlen() [Used in ImageTextEx()], strcmp() [Used in LoadImageFromMemory()]
 #include <math.h>               // Required for: fabsf()
 #include <stdio.h>              // Required for: sprintf() [Used in ExportImageAsCode()]
 
@@ -122,6 +128,14 @@
     #define STB_IMAGE_IMPLEMENTATION
     #include "external/stb_image.h"         // Required for: stbi_load_from_file()
                                             // NOTE: Used to read image data (multiple formats support)
+#endif
+
+#if defined(SUPPORT_FILEFORMAT_QOI)
+    #define QOI_MALLOC RL_MALLOC
+    #define QOI_FREE RL_FREE
+    
+    #define QOI_IMPLEMENTATION
+    #include "external/qoi.h"
 #endif
 
 #if defined(SUPPORT_IMAGE_EXPORT)
@@ -202,7 +216,8 @@ Image LoadImage(const char *fileName)
     defined(SUPPORT_FILEFORMAT_PIC) || \
     defined(SUPPORT_FILEFORMAT_HDR) || \
     defined(SUPPORT_FILEFORMAT_PSD)
-#define STBI_REQUIRED
+
+    #define STBI_REQUIRED
 #endif
 
     // Loading file to memory
@@ -286,36 +301,33 @@ Image LoadImageAnim(const char *fileName, int *frames)
 }
 
 // Load image from memory buffer, fileType refers to extension: i.e. ".png"
+// WARNING: File extension must be provided in lower-case
 Image LoadImageFromMemory(const char *fileType, const unsigned char *fileData, int dataSize)
 {
     Image image = { 0 };
 
-    char fileExtLower[16] = { 0 };
-    strcpy(fileExtLower, TextToLower(fileType));
-
 #if defined(SUPPORT_FILEFORMAT_PNG)
-    if ((TextIsEqual(fileExtLower, ".png"))
+    if ((strcmp(fileType, ".png") == 0)
 #else
     if ((false)
 #endif
 #if defined(SUPPORT_FILEFORMAT_BMP)
-        || (TextIsEqual(fileExtLower, ".bmp"))
+        || (strcmp(fileType, ".bmp") == 0)
 #endif
 #if defined(SUPPORT_FILEFORMAT_TGA)
-        || (TextIsEqual(fileExtLower, ".tga"))
+        || (strcmp(fileType, ".tga") == 0)
 #endif
 #if defined(SUPPORT_FILEFORMAT_JPG)
-        || (TextIsEqual(fileExtLower, ".jpg") ||
-            TextIsEqual(fileExtLower, ".jpeg"))
+        || ((strcmp(fileType, ".jpg") == 0) || (strcmp(fileType, ".jpeg") == 0))
 #endif
 #if defined(SUPPORT_FILEFORMAT_GIF)
-        || (TextIsEqual(fileExtLower, ".gif"))
+        || (strcmp(fileType, ".gif") == 0)
 #endif
 #if defined(SUPPORT_FILEFORMAT_PIC)
-        || (TextIsEqual(fileExtLower, ".pic"))
+        || (strcmp(fileType, ".pic") == 0)
 #endif
 #if defined(SUPPORT_FILEFORMAT_PSD)
-        || (TextIsEqual(fileExtLower, ".psd"))
+        || (strcmp(fileType, ".psd") == 0)
 #endif
        )
     {
@@ -340,7 +352,7 @@ Image LoadImageFromMemory(const char *fileType, const unsigned char *fileData, i
 #endif
     }
 #if defined(SUPPORT_FILEFORMAT_HDR)
-    else if (TextIsEqual(fileExtLower, ".hdr"))
+    else if (strcmp(fileType, ".hdr") == 0)
     {
 #if defined(STBI_REQUIRED)
         if (fileData != NULL)
@@ -362,20 +374,31 @@ Image LoadImageFromMemory(const char *fileType, const unsigned char *fileData, i
 #endif
     }
 #endif
+#if defined(SUPPORT_FILEFORMAT_QOI)
+    else if (strcmp(fileType, ".qoi") == 0) 
+    {
+        qoi_desc desc = { 0 };
+        image.data = qoi_decode(fileData, dataSize, &desc, 4);
+        image.width = desc.width;
+        image.height = desc.height;
+        image.format = PIXELFORMAT_UNCOMPRESSED_R8G8B8A8;
+        image.mipmaps = 1;
+    }
+#endif
 #if defined(SUPPORT_FILEFORMAT_DDS)
-    else if (TextIsEqual(fileExtLower, ".dds")) image = LoadDDS(fileData, dataSize);
+    else if (strcmp(fileType, ".dds") == 0) image = LoadDDS(fileData, dataSize);
 #endif
 #if defined(SUPPORT_FILEFORMAT_PKM)
-    else if (TextIsEqual(fileExtLower, ".pkm")) image = LoadPKM(fileData, dataSize);
+    else if (strcmp(fileType, ".pkm") == 0) image = LoadPKM(fileData, dataSize);
 #endif
 #if defined(SUPPORT_FILEFORMAT_KTX)
-    else if (TextIsEqual(fileExtLower, ".ktx")) image = LoadKTX(fileData, dataSize);
+    else if (strcmp(fileType, ".ktx") == 0) image = LoadKTX(fileData, dataSize);
 #endif
 #if defined(SUPPORT_FILEFORMAT_PVR)
-    else if (TextIsEqual(fileExtLower, ".pvr")) image = LoadPVR(fileData, dataSize);
+    else if (strcmp(fileType, ".pvr") == 0) image = LoadPVR(fileData, dataSize);
 #endif
 #if defined(SUPPORT_FILEFORMAT_ASTC)
-    else if (TextIsEqual(fileExtLower, ".astc")) image = LoadASTC(fileData, dataSize);
+    else if (strcmp(fileType, ".astc") == 0) image = LoadASTC(fileData, dataSize);
 #endif
     else TRACELOG(LOG_WARNING, "IMAGE: Data format not supported");
 
@@ -478,6 +501,26 @@ bool ExportImage(Image image, const char *fileName)
 #endif
 #if defined(SUPPORT_FILEFORMAT_JPG)
     else if (IsFileExtension(fileName, ".jpg")) success = stbi_write_jpg(fileName, image.width, image.height, channels, imgData, 90);  // JPG quality: between 1 and 100
+#endif
+#if defined(SUPPORT_FILEFORMAT_QOI)
+    else if (IsFileExtension(fileName, ".qoi"))
+    {
+        channels = 0;
+        if (image.format == PIXELFORMAT_UNCOMPRESSED_R8G8B8) channels = 3;
+        else if (image.format == PIXELFORMAT_UNCOMPRESSED_R8G8B8A8) channels = 4;
+        else TRACELOG(LOG_WARNING, "IMAGE: Image pixel format must be R8G8B8 or R8G8B8A8");
+        
+        if ((channels == 3) || (channels == 4))
+        {
+            qoi_desc desc = { 0 };
+            desc.width = image.width; 
+            desc.height = image.height;
+            desc.channels = channels;
+            desc.colorspace = QOI_SRGB;
+
+            success = qoi_write(fileName, imgData, &desc);
+        }
+    }
 #endif
 #if defined(SUPPORT_FILEFORMAT_KTX)
     else if (IsFileExtension(fileName, ".ktx")) success = SaveKTX(image, fileName);
@@ -1092,35 +1135,41 @@ void ImageToPOT(Image *image, Color fill)
 // Create an image from text (default font)
 Image ImageText(const char *text, int fontSize, Color color)
 {
+    Image imText = { 0 };
+#if defined(SUPPORT_MODULE_RTEXT)
     int defaultFontSize = 10;   // Default Font chars height in pixel
     if (fontSize < defaultFontSize) fontSize = defaultFontSize;
     int spacing = fontSize/defaultFontSize;
-
-    Image imText = ImageTextEx(GetFontDefault(), text, (float)fontSize, (float)spacing, color);
-
+    imText = ImageTextEx(GetFontDefault(), text, (float)fontSize, (float)spacing, color);   // WARNING: Module required: rtext
+#else
+    imText = GenImageColor(200, 60, BLACK);     // Generating placeholder black image rectangle
+    TRACELOG(LOG_WARNING, "IMAGE: ImageTextEx() requires module: rtext");
+#endif
     return imText;
 }
 
 // Create an image from text (custom sprite font)
 Image ImageTextEx(Font font, const char *text, float fontSize, float spacing, Color tint)
 {
+    Image imText = { 0 };
+#if defined(SUPPORT_MODULE_RTEXT)
     int size = (int)strlen(text);   // Get size in bytes of text
 
     int textOffsetX = 0;            // Image drawing position X
     int textOffsetY = 0;            // Offset between lines (on line break '\n')
 
     // NOTE: Text image is generated at font base size, later scaled to desired font size
-    Vector2 imSize = MeasureTextEx(font, text, (float)font.baseSize, spacing);
+    Vector2 imSize = MeasureTextEx(font, text, (float)font.baseSize, spacing);  // WARNING: Module required: rtext
 
     // Create image to store text
-    Image imText = GenImageColor((int)imSize.x, (int)imSize.y, BLANK);
+    imText = GenImageColor((int)imSize.x, (int)imSize.y, BLANK);
 
     for (int i = 0; i < size; i++)
     {
         // Get next codepoint from byte string and glyph index in font
         int codepointByteCount = 0;
-        int codepoint = GetCodepoint(&text[i], &codepointByteCount);
-        int index = GetGlyphIndex(font, codepoint);
+        int codepoint = GetCodepoint(&text[i], &codepointByteCount);    // WARNING: Module required: rtext
+        int index = GetGlyphIndex(font, codepoint);                     // WARNING: Module required: rtext
 
         // NOTE: Normally we exit the decoding sequence as soon as a bad byte is found (and return 0x3f)
         // but we need to draw all of the bad bytes using the '?' symbol moving one byte
@@ -1155,10 +1204,14 @@ Image ImageTextEx(Font font, const char *text, float fontSize, float spacing, Co
         TRACELOG(LOG_INFO, "IMAGE: Text scaled by factor: %f", scaleFactor);
 
         // Using nearest-neighbor scaling algorithm for default font
+        // WARNING: Module required: rtext
         if (font.texture.id == GetFontDefault().texture.id) ImageResizeNN(&imText, (int)(imSize.x*scaleFactor), (int)(imSize.y*scaleFactor));
         else ImageResize(&imText, (int)(imSize.x*scaleFactor), (int)(imSize.y*scaleFactor));
     }
-
+#else
+    imText = GenImageColor(200, 60, BLACK);     // Generating placeholder black image rectangle
+    TRACELOG(LOG_WARNING, "IMAGE: ImageTextEx() requires module: rtext");
+#endif
     return imText;
 }
 
@@ -2768,10 +2821,13 @@ void ImageDraw(Image *dst, Image src, Rectangle srcRec, Rectangle dstRec, Color 
 // Draw text (default font) within an image (destination)
 void ImageDrawText(Image *dst, const char *text, int posX, int posY, int fontSize, Color color)
 {
+#if defined(SUPPORT_MODULE_RTEXT)
     Vector2 position = { (float)posX, (float)posY };
-
-    // NOTE: For default font, sapcing is set to desired font size / default font size (10)
-    ImageDrawTextEx(dst, GetFontDefault(), text, position, (float)fontSize, (float)fontSize/10, color);
+    // NOTE: For default font, spacing is set to desired font size / default font size (10)
+    ImageDrawTextEx(dst, GetFontDefault(), text, position, (float)fontSize, (float)fontSize/10, color);   // WARNING: Module required: rtext
+#else
+    TRACELOG(LOG_WARNING, "IMAGE: ImageDrawText() requires module: rtext");
+#endif
 }
 
 // Draw text (custom sprite font) within an image (destination)
@@ -3071,6 +3127,7 @@ void SetTextureWrap(Texture2D texture, int wrap)
     {
         case TEXTURE_WRAP_REPEAT:
         {
+            // NOTE: It only works if NPOT textures are supported, i.e. OpenGL ES 2.0 could not support it
             rlTextureParameters(texture.id, RL_TEXTURE_WRAP_S, RL_TEXTURE_WRAP_REPEAT);
             rlTextureParameters(texture.id, RL_TEXTURE_WRAP_T, RL_TEXTURE_WRAP_REPEAT);
         } break;
@@ -3132,6 +3189,8 @@ void DrawTextureRec(Texture2D texture, Rectangle source, Vector2 position, Color
 // i.e tiling = { 1.0f, 1.0f } refers to all texture, offset = { 0.5f, 0.5f } moves texture origin to center
 void DrawTextureQuad(Texture2D texture, Vector2 tiling, Vector2 offset, Rectangle quad, Color tint)
 {
+    // WARNING: This solution only works if TEXTURE_WRAP_REPEAT is supported,
+    // NPOT textures supported is required and OpenGL ES 2.0 could not support it
     Rectangle source = { offset.x*texture.width, offset.y*texture.height, tiling.x*texture.width, tiling.y*texture.height };
     Vector2 origin = { 0.0f, 0.0f };
 
@@ -4759,3 +4818,5 @@ static Vector4 *LoadImageDataNormalized(Image image)
 
     return pixels;
 }
+
+#endif      // SUPPORT_MODULE_RTEXTURES

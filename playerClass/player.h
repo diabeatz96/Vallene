@@ -51,6 +51,9 @@ public:
 
     std::shared_ptr<textRoom> currentRoom;
 
+    const std::shared_ptr<textRoom> &getCurrentRoom() const;
+
+    void setCurrentRoom(const std::shared_ptr<textRoom> &currentRoom);
 
 
 private:

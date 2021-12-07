@@ -15,7 +15,7 @@
 #  Many thanks to Milan Nikolic (@gen2brain) for implementing Android platform pipeline.
 #  Many thanks to Emanuele Petriglia for his contribution on GNU/Linux pipeline.
 #
-#  Copyright (c) 2014-2019 Ramon Santamaria (@raysan5)
+#  Copyright (c) 2014-2021 Ramon Santamaria (@raysan5)
 #
 #  This software is provided "as-is", without any express or implied warranty.
 #  In no event will the authors be held liable for any damages arising from
@@ -257,6 +257,12 @@ ifeq ($(PLATFORM),PLATFORM_ANDROID)
         CC = $(ANDROID_TOOLCHAIN)/bin/$(ANDROID_COMPILER_ARCH)-linux-androideabi$(ANDROID_API_VERSION)-clang
     endif
     ifeq ($(ANDROID_ARCH),arm64)
+        CC = $(ANDROID_TOOLCHAIN)/bin/$(ANDROID_COMPILER_ARCH)-linux-android$(ANDROID_API_VERSION)-clang
+    endif
+    ifeq ($(ANDROID_ARCH),x86)
+        CC = $(ANDROID_TOOLCHAIN)/bin/$(ANDROID_COMPILER_ARCH)-linux-android$(ANDROID_API_VERSION)-clang
+    endif
+    ifeq ($(ANDROID_ARCH),x86_64)
         CC = $(ANDROID_TOOLCHAIN)/bin/$(ANDROID_COMPILER_ARCH)-linux-android$(ANDROID_API_VERSION)-clang
     endif
     # It seems from Android NDK r22 onwards we need to use llvm-ar

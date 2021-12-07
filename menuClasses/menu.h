@@ -7,6 +7,8 @@
 
 #include<raylib.h>
 #include"textRoom.h"
+#include"../playerClass/player.h"
+
 
 
 class menu {

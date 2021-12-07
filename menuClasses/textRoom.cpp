@@ -4,11 +4,11 @@
 
 #include "textRoom.h"
 
-const std::list<std::shared_ptr<textRoom>> &textRoom::getConnectedRooms() const {
+const std::list<textRoom> &textRoom::getConnectedRooms() const {
     return ConnectedRooms;
 }
 
-void textRoom::setConnectedRooms(const std::list<std::shared_ptr<textRoom>> &connectedRooms) {
+void textRoom::setConnectedRooms(const std::list<textRoom> &connectedRooms) {
     ConnectedRooms = connectedRooms;
 }
 

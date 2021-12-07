@@ -24,7 +24,7 @@ void menu::printMenu() {
     int state = 0;
     float alpha = 1.0f;
     SetTargetFPS(60);
-
+    player isaiah;
 
 
     /**  Size to center Logo. + values go right and down, - values go left and up*/
@@ -167,9 +167,24 @@ void menu::stateManager(menu::windows& windowStates, int& frameCounter, float& a
 
 void menu::selectTextRoom() {
     textRoom TEST_BOX1;
+    textRoom Test_BOX2;
+    textRoom Test_Box3;
+    std::list<textRoom> testBox1 = {Test_Box3, Test_BOX2};
+    Rectangle bottomButton = {static_cast<float>(GetScreenWidth() / 2) - 50,
+                              static_cast<float>(GetScreenHeight() / 2) + 100, 100, 50};
+    int testFont = 0;
 
-    TEST_BOX1.setMyText1("It is the year 3360 on the planet of Vallene. \n This small planet in ancient times used to be a barren wasteland with people fighting in endless sand dunes, \n until “Dawn” appeared. Dawn, a flying castle which appeared 5,000 years ago, shifted the weather, and created seasons. \n Since then, Dawn has been controlled by a Royal family since the beginning, led by the chosen sovereign, who is given the title of “Maestro”, and the “Four Heroes of the Seasons”. \n Our story begins when the most recent sovereign has died. An Empress loved by her people, as well as her eldest son Isaiah. ");
+    TEST_BOX1.setConnectedRooms(testBox1);
+    TEST_BOX1.setMyText1("\t\t\tIt is the year 3360 on the planet of Vallene. \n This small planet in ancient times used to be a barren wasteland with people fighting in endless sand dunes, \n until “Dawn” appeared. Dawn, a flying castle which appeared 5,000 years ago, shifted the weather, and created seasons. \n Since then, Dawn has been controlled by a Royal family since the beginning, led by the chosen sovereign, who is given the title of “Maestro”, and the “Four Heroes of the Seasons”. \n Our story begins when the most recent sovereign has died. An Empress loved by her people, as well as her eldest son Isaiah. ");
     TEST_BOX1.setRoomName("First Title");
+    Test_Box3.setMyText1("This is test text!");
 
-    GuiTextBox(Rectangle{GUI_TEXT_ALIGN_CENTER, GUI_TEXT_ALIGN_CENTER, static_cast<float>(GetScreenWidth() * 0.7), static_cast<float>(GetScreenHeight() * 0.7)}, TEST_BOX1.getMyText(), 50, true);
+    if (GuiButton(bottomButton, "Next")) {
+        testFont = 80;
+    }
+
+    DrawText(Test_Box3.getMyText(), GUI_TEXT_ALIGN_CENTER, 0, testFont, WHITE);
+
+    DrawText(TEST_BOX1.getMyText(), GUI_TEXT_ALIGN_CENTER, GUI_TEXT_ALIGN_CENTER, 20, WHITE);
+    //GuiTextBox(Rectangle{GUI_TEXT_ALIGN_CENTER, GUI_TEXT_ALIGN_CENTER, static_cast<float>(GetScreenWidth() * 0.7), static_cast<float>(GetScreenHeight() * 0.7)}, TEST_BOX1.getMyText(), 50, true);
 }

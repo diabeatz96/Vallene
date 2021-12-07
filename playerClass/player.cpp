@@ -69,3 +69,11 @@ player::player(int iconfidence, int ibenevolence, int iauthority, int ireputatio
     reputation = ireputation;
 
 }
+
+const std::shared_ptr<textRoom> &player::getCurrentRoom() const {
+    return currentRoom;
+}
+
+void player::setCurrentRoom(const std::shared_ptr<textRoom> &currentRoom) {
+    player::currentRoom = currentRoom;
+}
