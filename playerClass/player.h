@@ -49,11 +49,11 @@ public:
 
     player(int, int, int, int);
 
-    std::shared_ptr<textRoom> currentRoom;
+    textRoom currentRoom;
 
-    const std::shared_ptr<textRoom> &getCurrentRoom() const;
+    const textRoom &getCurrentRoom() const;
 
-    void setCurrentRoom(const std::shared_ptr<textRoom> &currentRoom);
+    void setCurrentRoom(textRoom &currentRoom);
 
 
 private:

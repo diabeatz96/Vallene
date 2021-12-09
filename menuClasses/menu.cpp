@@ -45,6 +45,7 @@ void menu::printMenu() {
     InitAudioDevice();
     TitleMusic = LoadMusicStream("Audio/Title.mp3");
     PlayMusicStream(TitleMusic);
+    initalizeTextChapter1(isaiah);
 
 
     while (!WindowShouldClose()) {
@@ -101,7 +102,7 @@ void menu::printMenu() {
             DrawTextureEx(Background, backgroundLen, 0, 2, Fade(BLACK, alpha));
         } else if (windowStates == ENDTEXT) {
             DrawRectangle(0, 0, GetScreenWidth(), GetScreenHeight(), BLACK);
-            selectTextRoom();
+            selectTextRoom(isaiah);
         }
 
         EndDrawing();
@@ -165,7 +166,27 @@ void menu::stateManager(menu::windows& windowStates, int& frameCounter, float& a
     }
 }
 
-void menu::selectTextRoom() {
+
+void menu::selectTextRoom(player &isaiah) {
+
+    Rectangle bottomRight = {static_cast<float>(GetScreenWidth() / 2) + 300,
+                              static_cast<float>(GetScreenHeight() / 2) + 240, 100, 50};
+
+    Rectangle bottomLeft = {static_cast<float>(GetScreenWidth() / 2) - 240,
+                             static_cast<float>(GetScreenHeight() / 2) + 240, 100, 50};
+
+    isaiah.getCurrentRoom().getMyText();
+
+    DrawText(isaiah.currentRoom.getMyText(), GUI_TEXT_ALIGN_CENTER, GUI_TEXT_ALIGN_CENTER, 20, WHITE);
+
+    if (GuiButton(bottomRight, "Next Page")) {
+        isaiah.setCurrentRoom(isaiah.currentRoom.ConnectedRooms.front());
+    }
+
+    if (GuiButton(bottomLeft, "Prev Page")) {
+        isaiah.setCurrentRoom(isaiah.currentRoom.ConnectedRooms.front());
+    }
+        /*
     textRoom TEST_BOX1;
     textRoom Test_BOX2;
     textRoom Test_Box3;
@@ -187,4 +208,26 @@ void menu::selectTextRoom() {
 
     DrawText(TEST_BOX1.getMyText(), GUI_TEXT_ALIGN_CENTER, GUI_TEXT_ALIGN_CENTER, 20, WHITE);
     //GuiTextBox(Rectangle{GUI_TEXT_ALIGN_CENTER, GUI_TEXT_ALIGN_CENTER, static_cast<float>(GetScreenWidth() * 0.7), static_cast<float>(GetScreenHeight() * 0.7)}, TEST_BOX1.getMyText(), 50, true);
+    */
 }
+
+void menu::initalizeTextChapter1(player &isaiah) {
+    /** Introduce intro to character**/
+    textRoom intro;
+    textRoom page1;
+    textRoom page2;
+    textRoom page3;
+    textRoom page4;
+    textRoom page5;
+    textRoom page6;
+    page1.setMyText1("Isaiah looks down at his cloak in silence for a few seconds. I have a few minutes to spare before I have to be exposed to the public. \n His bedroom was one of the few places he could hide from the officious upper nobles of Dawn, \n especially since it was deep within the abandoned wing of the castle. Decrepit furniture and crates were already here when the room became his. \n Many picture frames and artworks are spread in an unorganized fashion across the walls, covered in dust that may have even come from the time Dawn was created. \n The only things that were his own is the bed, a wardrobe of clothes, a bookshelf and a small desk for work. \n There is also a large vanity, personally decorated by his late mother, which was thrown in here shortly after her passing. I miss her, he thinks. To take this dreary day off his mind, \n he looks around to find a distraction. ");
+    intro.setRoomName("Introduction");
+    intro.setMyText1("\t\t\tIt is the year 3360 on the planet of Vallene. \n This small planet in ancient times used to be a barren wasteland with people fighting in endless sand dunes, \n until “Dawn” appeared. Dawn, a flying castle which appeared 5,000 years ago, shifted the weather, and created seasons. \n Since then, Dawn has been controlled by a Royal family since the beginning, led by the chosen sovereign, who is given the title of “Maestro”, and the “Four Heroes of the Seasons”. \n Our story begins when the most recent sovereign has died. An Empress loved by her people, as well as her eldest son Isaiah. ");
+    std::list<textRoom> page1Connect = {intro};
+    std::list<textRoom> introConnect = {page1};
+    intro.setConnectedRooms(introConnect);
+    page1.setConnectedRooms(page1Connect);
+    isaiah.setCurrentRoom(intro);
+}
+
+

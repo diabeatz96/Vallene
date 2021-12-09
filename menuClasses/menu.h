@@ -20,7 +20,8 @@ public:
     void printMenu();
     void LoadTextures(int state);
     void stateManager(windows& State, int& framesref, float& alpha);
-    void selectTextRoom();
+    void initalizeTextChapter1(player &);
+    void selectTextRoom(player &isaiah);
 
 private:
     int state = 0;
